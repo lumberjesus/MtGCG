@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockercontainer-deployment
+spec:
+  replicas: 2  # Number of instances (adjust as needed)
+  selector:
+    matchLabels:
+      app: dockercontainer
+  template:
+    metadata:
+      labels:
+        app: dockercontainer
+    spec:
+      containers:
+      - name: dockercontainer
+        image: rpgcontainer.azurecr.io/dockercontainer:0.0.4  # Your pushed image
+        ports:
+        - containerPort: 80
+
